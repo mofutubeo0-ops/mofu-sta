@@ -7,112 +7,121 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #F9F6F0; /* 優しいベージュ */
-            --main-color: #FF8E72; /* コーラルピンク */
-            --text-color: #5D534A; /* 大人っぽいブラウン */
-            --accent-color: #FFFFFF;
+            --bg-color: #F9F6F0; 
+            --main-color: #FF8E72; 
+            --text-color: #5D534A; 
+            --accent-white: rgba(255, 255, 255, 0.9);
         }
 
         body {
             font-family: 'Noto Sans JP', sans-serif;
             background-color: var(--bg-color);
+            /* 肉球パターン背景 */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 100 100'%3E%3Ctext y='50' font-size='20' opacity='0.05'%3E🐾%3C/text%3E%3C/svg%3E");
             color: var(--text-color);
             margin: 0;
-            line-height: 1.6;
+            padding-bottom: 50px;
         }
 
         header {
-            padding: 40px 20px;
+            padding: 50px 20px;
             text-align: center;
         }
 
-        h1 {
-            font-size: 1.8rem;
-            letter-spacing: 0.1em;
-            margin-bottom: 10px;
-        }
+        h1 { font-size: 1.6rem; letter-spacing: 0.1em; margin-bottom: 5px; }
 
-        /* 勉強会お知らせセクション */
+        /* 勉強会バナー */
         .event-banner {
-            background-color: var(--accent-color);
-            border: 2px solid var(--main-color);
-            border-radius: 20px;
-            margin: 20px auto;
-            max-width: 600px;
+            background: var(--accent-white);
+            border: 1.5px solid #EAE2D6;
+            border-radius: 15px;
+            margin: 0 20px 30px;
             padding: 20px;
-            position: relative;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .event-banner::after {
-            content: '🐾'; /* 肉球のアクセント */
-            position: absolute;
-            bottom: -15px;
-            right: 20px;
-            font-size: 1.5rem;
-            opacity: 0.6;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
         }
 
         .event-tag {
-            display: inline-block;
-            background-color: var(--main-color);
+            background: var(--main-color);
             color: white;
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            margin-bottom: 10px;
+            padding: 3px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
         }
 
-        /* ナビゲーション */
+        /* スマホ・PC共通：大人可愛いボタンメニュー */
         .nav-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
-            padding: 20px;
-            max-width: 800px;
+            padding: 0 20px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
         .nav-item {
-            background: white;
-            padding: 30px 10px;
+            background: var(--accent-white);
+            padding: 25px 15px;
             text-align: center;
-            border-radius: 15px;
+            border-radius: 18px;
             text-decoration: none;
             color: var(--text-color);
-            font-weight: bold;
-            transition: transform 0.2s;
-            border-bottom: 3px solid #EAE2D6;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border: 1px solid transparent;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
         }
 
-        .nav-item:hover {
-            transform: translateY(-5px);
-            border-bottom: 3px solid var(--main-color);
+        .nav-item:active { /* スマホでタップした時の動き */
+            transform: scale(0.95);
+            background: #FFF;
+            border-color: var(--main-color);
         }
 
         .nav-icon {
-            display: block;
-            font-size: 1.5rem;
-            margin-bottom: 5px;
+            font-size: 1.4rem;
+            /* アイコンの下に小さな肉球 */
+            position: relative;
+        }
+
+        .nav-item::after {
+            content: '🐾';
+            font-size: 0.6rem;
+            color: var(--main-color);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .nav-item:hover::after { opacity: 0.5; }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.4rem; }
+            .nav-item { padding: 20px 10px; font-size: 0.85rem; }
         }
     </style>
 </head>
 <body>
 
     <header>
+        <p style="font-size: 0.8rem; margin: 0; opacity: 0.8;">もふもふ、スタディ！</p>
         <h1>AIイラスト×マネタイズ<br><strong>もふスタ</strong></h1>
-        <p>〜 大人っぽ可愛く、AIを味方にする 〜</p>
     </header>
 
     <div class="event-banner">
-        <span class="event-tag">NEXT STUDY GROUP</span>
-        <h2 style="margin: 5px 0;">次回の勉強会：2月15日(日) 21:00〜</h2>
-        <p style="font-size: 0.9rem; margin-bottom: 0;">テーマ：Midjourneyで「大人可愛い」を極めるコツ</p>
+        <span class="event-tag">NEXT</span>
+        <h2 style="font-size: 1.1rem; margin: 10px 0;">2月15日(日) 21:00〜 勉強会</h2>
+        <p style="font-size: 0.85rem; margin: 0; opacity: 0.9;">「大人可愛い」を極めるコツ</p>
     </div>
 
     <nav class="nav-grid">
         <a href="#" class="nav-item"><span class="nav-icon">🎥</span>動画アーカイブ</a>
-        <a href="#" class="nav-item"><span class="nav-icon">📝</span>プロンプト・note</a>
+        <a href="#" class="nav-item"><span class="nav-icon">📝</span>プロンプト/note</a>
         <a href="#" class="nav-item"><span class="nav-icon">🛠</span>おすすめツール</a>
         <a href="#" class="nav-item"><span class="nav-icon">📢</span>お知らせ</a>
     </nav>
