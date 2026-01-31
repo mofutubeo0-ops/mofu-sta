@@ -4,6 +4,7 @@
     <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>AIイラスト×マネタイズ もふスタ</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -17,115 +18,140 @@
         body {
             font-family: 'Noto Sans JP', sans-serif;
             background-color: var(--bg-color);
-            /* 肉球パターン背景 */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 100 100'%3E%3Ctext y='50' font-size='20' opacity='0.05'%3E🐾%3C/text%3E%3C/svg%3E");
             color: var(--text-color);
             margin: 0;
-            padding-bottom: 50px;
+            padding-bottom: 80px;
         }
 
-        header {
-            padding: 50px 20px;
-            text-align: center;
-        }
+        header { padding: 40px 20px; text-align: center; }
+        h1 { font-size: 1.5rem; margin-bottom: 5px; }
 
-        h1 { font-size: 1.6rem; letter-spacing: 0.1em; margin-bottom: 5px; }
+        /* コンテンツエリア */
+        .container { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+        .content-section { display: none; }
+        .content-section.active { display: block; }
 
-        /* 勉強会バナー */
-        .event-banner {
-            background: var(--accent-white);
-            border: 1.5px solid #EAE2D6;
+        /* 動画カード */
+        .video-card {
+            background: white;
             border-radius: 15px;
-            margin: 0 20px 30px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .video-thumb {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #ccc;
+            font-size: 2rem;
         }
 
-        .event-tag {
+        /* プロンプトエリア */
+        .prompt-box {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid var(--main-color);
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .copy-btn {
             background: var(--main-color);
             color: white;
-            padding: 3px 15px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: bold;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            float: right;
         }
 
-        /* スマホ・PC共通：大人可愛いボタンメニュー */
-        .nav-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            padding: 0 20px;
-            max-width: 600px;
-            margin: 0 auto;
+        /* 下部ナビゲーション */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #eee;
         }
-
-        .nav-item {
-            background: var(--accent-white);
-            padding: 25px 15px;
-            text-align: center;
-            border-radius: 18px;
-            text-decoration: none;
+        .nav-btn {
+            background: none;
+            border: none;
             color: var(--text-color);
-            font-size: 0.95rem;
-            font-weight: 700;
-            border: 1px solid transparent;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
-            transition: all 0.3s ease;
+            font-size: 0.7rem;
+            cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
         }
-
-        .nav-item:active { /* スマホでタップした時の動き */
-            transform: scale(0.95);
-            background: #FFF;
-            border-color: var(--main-color);
-        }
-
-        .nav-icon {
-            font-size: 1.4rem;
-            /* アイコンの下に小さな肉球 */
-            position: relative;
-        }
-
-        .nav-item::after {
-            content: '🐾';
-            font-size: 0.6rem;
-            color: var(--main-color);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .nav-item:hover::after { opacity: 0.5; }
-
-        @media (max-width: 480px) {
-            h1 { font-size: 1.4rem; }
-            .nav-item { padding: 20px 10px; font-size: 0.85rem; }
-        }
+        .nav-btn span { font-size: 1.2rem; margin-bottom: 2px; }
+        .nav-btn.active { color: var(--main-color); }
     </style>
 </head>
 <body>
 
     <header>
-        <p style="font-size: 0.8rem; margin: 0; opacity: 0.8;">もふもふ、スタディ！</p>
-        <h1>AIイラスト×マネタイズ<br><strong>もふスタ</strong></h1>
+        <h1>もふスタ <span>🐾</span></h1>
     </header>
 
-    <div class="event-banner">
-        <span class="event-tag">NEXT</span>
-        <h2 style="font-size: 1.1rem; margin: 10px 0;">2月15日(日) 21:00〜 勉強会</h2>
-        <p style="font-size: 0.85rem; margin: 0; opacity: 0.9;">「大人可愛い」を極めるコツ</p>
+    <div class="container">
+        <section id="top" class="content-section active">
+            <div style="background: var(--accent-white); padding: 20px; border-radius: 15px; text-align: center; border: 1.5px solid var(--main-color);">
+                <p class="event-tag" style="color:var(--main-color); font-weight:bold;">NEXT STUDY</p>
+                <h2 style="font-size: 1.1rem;">2月15日(日) 21:00〜</h2>
+                <p style="font-size: 0.8rem;">勉強会のZoomリンクは公式LINEをご確認ください。</p>
+            </div>
+        </section>
+
+        <section id="videos" class="content-section">
+            <div class="video-card">
+                <a href="https://youtube.com/..." class="video-thumb">📺 PLAY</a>
+                <div style="padding:15px;">
+                    <h3 style="margin:0; font-size:1rem;">第1回：AIイラストの基礎とSNS活用</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="prompts" class="content-section">
+            <div class="prompt-box">
+                <button class="copy-btn" onclick="copyText('prompt1')">コピー</button>
+                <p style="font-size: 0.8rem; margin:0 0 10px 0; font-weight: bold;">大人可愛い水彩画風</p>
+                <code id="prompt1" style="font-size: 0.85rem; color: #777;">masterpiece, best quality, watercolor painting, cute girl, coral pink theme, soft lighting...</code>
+            </div>
+        </section>
     </div>
 
-    <nav class="nav-grid">
-        <a href="#" class="nav-item"><span class="nav-icon">🎥</span>動画アーカイブ</a>
-        <a href="#" class="nav-item"><span class="nav-icon">📝</span>プロンプト/note</a>
-        <a href="#" class="nav-item"><span class="nav-icon">🛠</span>おすすめツール</a>
-        <a href="#" class="nav-item"><span class="nav-icon">📢</span>お知らせ</a>
+    <nav class="bottom-nav">
+        <button class="nav-btn active" onclick="showSection('top')"><span>🏠</span>TOP</button>
+        <button class="nav-btn" onclick="showSection('videos')"><span>🎥</span>動画</button>
+        <button class="nav-btn" onclick="showSection('prompts')"><span>📝</span>プロンプト</button>
     </nav>
 
+    <script>
+        function showSection(id) {
+            // 全セクションを非表示
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            // 指定セクションを表示
+            document.getElementById(id).classList.add('active');
+            // ボタンのアクティブ状態を更新
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+
+        function copyText(id) {
+            const text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text);
+            alert("コピーしました！🐾");
+        }
+    </script>
 </body>
 </html>
